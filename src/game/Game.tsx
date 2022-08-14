@@ -8,13 +8,13 @@ type Props = {};
 export const Game = (props: Props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const { snakeBody } = useGameLogic()
+  const { snakeBody, onKeyDownHandler } = useGameLogic();
 
   const drawGame = (context: CanvasRenderingContext2D) => {
-    draw({context, snakeBody})
+    draw({ context, snakeBody });
   };
   return (
-    <StyledGame>
+    <StyledGame tabIndex={0} onKeyDown={onKeyDownHandler}>
       <Canvas draw={drawGame} ref={canvasRef} />
     </StyledGame>
   );
