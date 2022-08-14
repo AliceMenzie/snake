@@ -8,7 +8,10 @@ type Props = {};
 export const Game = (props: Props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const { snakeBody, onKeyDownHandler } = useGameLogic();
+  const { snakeBody, onKeyDownHandler } = useGameLogic({
+    canvasHeight: canvasRef.current?.height,
+    canvasWidth: canvasRef.current?.width,
+  });
 
   const drawGame = (context: CanvasRenderingContext2D) => {
     draw({ context, snakeBody });
