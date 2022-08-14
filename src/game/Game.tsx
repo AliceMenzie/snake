@@ -1,14 +1,21 @@
 import { useRef } from "react";
 import Canvas from "../canvas/Canvas";
+import draw from "../draw/draw";
 import { StyledGame } from "./Game.styles";
+import useGameLogic from "./useGameLogic";
 
 type Props = {};
 export const Game = (props: Props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const draw = (context: CanvasRenderingContext2D) => {};
+
+  const { snakeBody } = useGameLogic()
+
+  const drawGame = (context: CanvasRenderingContext2D) => {
+    draw({context, snakeBody})
+  };
   return (
     <StyledGame>
-      <Canvas draw={draw} ref={canvasRef} />
+      <Canvas draw={drawGame} ref={canvasRef} />
     </StyledGame>
   );
 };
